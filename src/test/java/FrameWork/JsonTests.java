@@ -5,6 +5,7 @@ import com.jayway.restassured.config.SSLConfig;
 import com.jayway.restassured.response.Response;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
@@ -27,6 +28,7 @@ public class JsonTests {
 
             Reporter.log("*****************Failed -Json output MissMatched****************************",true);
             Reporter.log(e.getMessage(),true);
+            org.testng.Assert.fail("Failed ..");
 
         }
 
