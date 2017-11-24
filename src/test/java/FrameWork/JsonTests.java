@@ -43,7 +43,7 @@ public class JsonTests {
                     new SSLConfig().relaxedHTTPSValidation())).contentType(com.jayway.restassured.http.ContentType.JSON).
                     when()
                     .get();
-           System.out.println(response.asString());
+           Reporter.log(response.asString(),true);
            /* Login login = response.as(Login.class, ObjectMapperType.GSON);
             System.out.println(login.getIp());*/
 
