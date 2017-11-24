@@ -28,6 +28,51 @@ public class JsonTests {
 
             Reporter.log("*****************Failed -Json output MissMatched****************************",true);
             Reporter.log(e.getMessage(),true);
+            String[] ErrorMessages = e.getMessage().split(";");
+            String stringBuilder = "";
+            StringBuffer HTMLTableString = new StringBuffer();
+            for(String message:ErrorMessages)
+            {
+                   String   messageCaption = message.split("\n")[0];
+                   String expectedValue = message.split("\n")[1].split(": ")[1];
+                String actualValue = message.split("\n")[2].split(": ")[1];
+
+               stringBuilder = "<table>\n" +
+                        "  <caption>"+messageCaption+"</aption>\n" +
+                        "  <tr>\n" +
+                        "    <th>Expected</th>\n" +
+                        "    <th>Actual Found</th>\n" +
+                        "  </tr>\n" +
+                        "  <tr>\n" +
+                        "    <td>"+expectedValue+"</td>\n" +
+                        "    <td>"+actualValue+"</td>\n" +
+                        "  </tr>\n" +
+                        "</table>\n";
+                 HTMLTableString.append(stringBuilder);
+
+
+            }
+
+            e.getMessage();
+
+            String HtmlStart = "<!DOCTYPE html>\n" +
+                    "<html>\n" +
+                    "<head>\n" +
+                    "<style>\n" +
+                    "table, th, td {\n" +
+                    "    border: 1px solid black;\n" +
+                    "}\n" +
+                    "</style>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "\n" +
+                    "<table>";
+             String HtmlEnd ="</body>\n" +
+                     "</html>";
+
+             Reporter.log(HtmlStart+HTMLTableString+HtmlEnd,true);
+
+
             org.testng.Assert.fail("Failed ..");
 
         }
@@ -46,8 +91,7 @@ public class JsonTests {
                     when()
                     .get();
            Reporter.log(response.asString(),true);
-           /* Login login = response.as(Login.class, ObjectMapperType.GSON);
-            System.out.println(login.getIp());*/
+
 
         return response;
     }
