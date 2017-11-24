@@ -26,7 +26,7 @@ public class JsonTests {
         {
 
             Reporter.log("*****************Failed -Json output MissMatched****************************",true);
-            System.out.println(e.getMessage());
+            Reporter.log(e.getMessage(),true);
 
         }
 
