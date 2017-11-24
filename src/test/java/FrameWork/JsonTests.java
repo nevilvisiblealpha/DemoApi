@@ -13,7 +13,6 @@ public class JsonTests {
     @Test
     public  void ApiExecuter() throws Throwable {
         try {
-
             Reporter.log("*************Expected Response As Below :************************",true);
             Response ExpectedResponse = getQuery("http://date.jsontest.com/");
 
