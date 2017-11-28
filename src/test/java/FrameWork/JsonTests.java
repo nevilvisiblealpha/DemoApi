@@ -101,8 +101,11 @@ public class JsonTests {
                     new SSLConfig().relaxedHTTPSValidation())).contentType(ContentType.JSON).
                     when()
                     .get("?"+params);
-
-           Reporter.log(response.asString(),true);
+           if(response.getStatusCode()==200) {
+               Reporter.log(response.asString(), true);
+           }else{
+               Reporter.log("Response is Not 200");
+           }
 
 
         return response;
