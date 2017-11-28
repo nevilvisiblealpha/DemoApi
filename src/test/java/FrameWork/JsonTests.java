@@ -18,6 +18,7 @@ public class JsonTests {
     @Test(dataProvider ="Base Urls provider",threadPoolSize = 4)
     public  void ApiExecuter(String basePath) throws Throwable {
         try {
+            Reporter.log("For BasePath : "+basePath.toString());
             Reporter.log("*************Expected Response As Below :************************",true);
             Response ExpectedResponse = getQuery("http://uat-webdq.visiblealpha.com:81",basePath);
 //"http://uat-webdq.visiblealpha.com:81
