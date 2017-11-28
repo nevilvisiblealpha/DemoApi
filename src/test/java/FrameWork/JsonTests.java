@@ -25,10 +25,20 @@ public class JsonTests {
 
             Reporter.log("*************Actual Response As Below  :***************************",true);
             Response ActualResponse = getQuery("http://uat-webdq.visiblealpha.com:81",basePath);
-            if(ExpectedResponse.getStatusCode()==200||ActualResponse.getStatusCode()==200 ) {
+            if(ExpectedResponse.getStatusCode()==200 && ActualResponse.getStatusCode()==200 ) {
+
                 JSONAssert.assertEquals(ExpectedResponse.asString(), ActualResponse.asString(), JSONCompareMode.NON_EXTENSIBLE);
                 Reporter.log("***************Passed -Json output Matched**********************************",true);
             }else{
+
+                if(ExpectedResponse.getStatusCode()!=200)
+                {
+                    Reporter.log("Invalid ResponseCode found from main server : "+  ExpectedResponse.getStatusCode());
+                }
+                if(ActualResponse.getStatusCode()!=200){
+
+                    Reporter.log("Invalid ResponseCode found from comparing server : "+  ExpectedResponse.getStatusCode());
+                }
                 throw new Exception("Not 200 request");
             }
 
@@ -37,7 +47,7 @@ public class JsonTests {
 
             Reporter.log("*****************Failed -Json output MissMatched****************************",true);
             Reporter.log(e.getMessage(),true);
-            String[] ErrorMessages = e.getMessage().split(";");
+            String [] ErrorMessages = e.getMessage().split(";");
             String stringBuilder = "";
             StringBuffer HTMLTableString = new StringBuffer();
             for(String message:ErrorMessages)
