@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 public class JsonTests {
 
-    @Test(dataProvider ="Base Urls provider")
+    @Test(dataProvider ="Base Urls provider",threadPoolSize = 4)
     public  void ApiExecuter(String basePath) throws Throwable {
         try {
             Reporter.log("*************Expected Response As Below :************************",true);
@@ -109,7 +109,7 @@ public class JsonTests {
 
 
 
-    @DataProvider(name ="Base Urls provider")
+    @DataProvider(name ="Base Urls provider",parallel = true)
     public Iterator<Object[]> getDataproviderValue()
     {
         LogFileReader logfile = new LogFileReader();
