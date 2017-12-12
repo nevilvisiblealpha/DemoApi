@@ -3,6 +3,7 @@ package FrameWork;
 import org.testng.annotations.DataProvider;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.HashSet;
@@ -16,7 +17,10 @@ public class LogFileReader {
     public Iterator<Object[]> fileReader() {
         Set<Object[]> basePaths = new HashSet<Object[]>();
         try {
-            FileInputStream fstream = new FileInputStream("D:\\DemoAPI\\DemoApi\\src\\test\\resources\\webdq_access.log");
+
+            File file = new File("src\\test\\resources\\webdq_access.log");
+           System.out.println( );
+            FileInputStream fstream = new FileInputStream(file.getAbsolutePath());
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strLine;
            /* read log line by line */
